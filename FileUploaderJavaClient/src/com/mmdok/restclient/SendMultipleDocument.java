@@ -31,7 +31,7 @@ import org.apache.http.util.EntityUtils;
 
 public class SendMultipleDocument {
 
-	private static int NUMBER_INSERT = 20;
+	private static int NUMBER_INSERT = 10;
 
 	public static void main(String[] args) {
 		SendMultipleDocument multiple = new SendMultipleDocument();
@@ -83,11 +83,10 @@ public class SendMultipleDocument {
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
 
 			// HttpPost("http://13.53.172.37:8080/storeFile-1/rest/upload2");
-			HttpPost httppost = new HttpPost("http://13.53.172.37:8080/storeFile-1/rest/upload2");
+			//HttpPost httppost = new HttpPost("http://13.53.172.37:8080/storeFile-1/rest/upload2");
 			// HttpPost httppost = new
 			// HttpPost("http://127.0.0.1/storeFile-1/rest/upload2");
-			// HttpPost httppost = new
-			// HttpPost("http://127.0.0.1:80/storeFile-1/rest/upload2");
+			 HttpPost httppost = new HttpPost("http://127.0.0.1:80/storeFile-1/rest/upload2");
 			MultipartEntity entity = new MultipartEntity();
 
 			entity.addPart("file2", new InputStreamBody(fis2, inFile2.getName()));

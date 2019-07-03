@@ -15,9 +15,9 @@ public class Masoud {
 	
 	 public void testaLite(){
 		 SiswaDao dao = HibernateUtil.getSiswaDao();
-	        SiswaEntity s = new SiswaEntity("S011", "Gabriella hansson", 34, 19, "SWE");
+	        SiswaEntity s = new SiswaEntity("S012", "Patrik Stream", 34, 19, "SWE");
 	        dao.save(s);
-	        SiswaEntity svar= dao.findById("S010");
+	        SiswaEntity svar= dao.findById("S011");
 	        if(svar !=null)
 	       System.out.println("svaret : "+ svar.getNama());
 	    }
