@@ -1,0 +1,5 @@
+GRANT ALL ON mm_dok.*  TO mm_dok@13.53.172.37 IDENTIFIED BY 'mm_dok'; 
+
+sudo ufw allow from 13.53.172.37 to any port 3306
+
+sudo mysql -uroot -p mm_dok -h server 13.53.172.37

@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./template.xhtml">
+
+    <ui:define name="head">
+        <script type="text/javascript">
+            //<![CDATA[
+            function onrangechange1() {
+                var range = PF('timelineFirstWdgt').getVisibleRange();
+                PF('timelineSecondWdgt').setVisibleRange(range.start, range.end);
+            }
+
+            function onrangechange2() {
+                var range = PF('timelineSecondWdgt').getVisibleRange();
+                PF('timelineFirstWdgt').setVisibleRange(range.start, range.end);
+            }
+            //]]>
+        </script>
+    </ui:define>
+
+    <ui:define name="title">
+        Timeline - <span class="subitem">Two Linked Timelines</span>
+    </ui:define>
+
+    <ui:define name="description">
+        When moving one timeline, the other moves along. Use mouse scroll wheel for zoom-in and zoom-out. A click on an event in the first timeline
+            selects an event in the second timeline (Project A or Project B).
+    </ui:define>
+
+    <ui:define name="implementation">
+
+        <h:form id="form">
+            <p:growl id="growl" showSummary="true" showDetail="false">
+                <p:autoUpdate />
+            </p:growl>
+
+            <h3 style="margin-top: 0">Events</h3>
+            <p:timeline id="timelineFirst" value="#{linkedTimelinesView.modelFirst}" var="task"
+                        height="250px" widgetVar="timelineFirstWdgt">
+                <p:ajax event="rangechange" oncomplete="onrangechange1()"/>
+                <p:ajax event="select" listener="#{linkedTimelinesView.onSelect}"/>
+
+                <h:panelGroup layout="block" rendered="#{not task.period}" style="padding-bottom:5px">
+                    <h:outputText value="#{task.title}"/>
+                </h:panelGroup>
+                <p:graphicImage library="demo" name="#{task.imagePath}"/>
+                <h:panelGroup rendered="#{task.period}" style="padding:8px">
+                    <h:outputText value="#{task.title}"/>
+                </h:panelGroup>
+            </p:timeline>
+
+            <h3>Projects</h3>
+            <p:timeline id="timelineSecond" value="#{linkedTimelinesView.modelSecond}"
+                        height="150px" widgetVar="timelineSecondWdgt">
+                <p:ajax event="rangechange" oncomplete="onrangechange2()"/>
+            </p:timeline>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

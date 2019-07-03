@@ -1,0 +1,15 @@
+<data>
+ <metadata>
+   <personnummer>199701011010</personnummer>
+<document_class>HANDLING</document_class>
+<sourcesystem_name>Navigation doc</sourcesystem_name>
+<source_systemid>A561</source_systemid>
+   <skadenummer>CLA-727719SK</skadenummer>
+   <policy_number>FORS_VILLA_HEM</policy_number>
+   <varumarke>POLKSAM</varumarke>
+   <department>SKADOR</department>
+   <customerid>CUS-199701HS</customerid>
+<yta>skadehandling</yta> 
+<gallringdagar>600</gallringdagar>
+<which_year>2019</which_year></metadata>
+</data>

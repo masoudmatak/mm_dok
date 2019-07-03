@@ -1,0 +1,88 @@
+insert into doc(filename,document_class,source_systemid,personnummer,skadenummer,varumarke, customerid, year, doktype,color,bucket_name,generated_filename) 
+values('/home/ubuntu/dokmentplatsen/HD84FKUI_18535422.pdf','SKADEANMALAN','A561','201905105050',
+'CLA-476135SK','FOLKSAM','CUS-8271183HS','2016','SKADEANMALAN','Black','SKADEANMALAN','6WNKG349SO0M55CYPM8OTCOZVL842TFW1ZC5');
+
+
+CREATE DEFINER=`mm_dok`@`localhost` TRIGGER ADDID
+  AFTER INSERT ON animals FOR EACH ROW 
+   UPDATE animal_count SET animal_count.animals = animal_count.animals+1;
+DELIMITER //
+CREATE DEFINER=`mm_dok`@`localhost` TRIGGER ADDID_MASOUD BEFORE INSERT ON test FOR EACH ROW
+ BEGIN
+ IF new.id IS NULL THEN
+    SET new.id = (SELECT UUID());
+  END IF;
+  
+END //
+
+
+
+
+DELIMITER |
+
+CREATE TABLE `doc` (
+  `id` varchar(36) NOT NULL,
+  `doktype` varchar(20) DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  `color` varchar(20) DEFAULT NULL,
+  `docsize` int(11) DEFAULT NULL,
+  `sold` tinyint(1) DEFAULT NULL,
+  `personnummer` varchar(12) DEFAULT NULL,
+  `skadenummer` varchar(30) DEFAULT NULL,
+  `customerid` varchar(45) DEFAULT NULL,
+  `varumarke` varchar(45) DEFAULT NULL,
+  `sekundar_varumarke` varchar(45) DEFAULT NULL,
+  `bucket_name` varchar(45) DEFAULT NULL,
+  `document_class` varchar(45) DEFAULT NULL,
+  `source_systemid` varchar(45) DEFAULT NULL,
+  `gallrings_date` datetime DEFAULT NULL,
+  `time_inserted` datetime DEFAULT CURRENT_TIMESTAMP,
+  `filename` varchar(200) DEFAULT NULL,
+  `generated_filename` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TRIGGER TRIG_DOC_ID
+BEFORE INSERT ON doc
+FOR EACH ROW
+BEGIN
+    IF NEW.ID = 0 THEN                        
+        SET NEW.ID = UUID();
+    END IF;
+END |
+
+DELIMITER ;
+
+
+
+
+/*DELIMITER |
+
+CREATE TABLE DM_COUNTRIES
+(
+    COUNTRY_UUID BINARY(26) NOT NULL DEFAULT 0,         
+    C_NAME VARCHAR(255) NOT NULL UNIQUE,
+    C_LOCALNAME VARCHAR(255) DEFAULT NULL,
+    C_COUNTRYCODE VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY (COUNTRY_UUID)
+)
+ENGINE=InnoDB |
+
+
+CREATE TRIGGER TRIG_BI_DM_COUNTRIES
+BEFORE INSERT ON DM_COUNTRIES
+FOR EACH ROW
+BEGIN
+    IF NEW.COUNTRY_UUID = 0 THEN                        
+        SET NEW.COUNTRY_UUID = UUID();
+    END IF;
+END |
+
+INSERT INTO DM_COUNTRIES
+    (C_NAME, C_LOCALNAME, C_COUNTRYCODE)
+VALUES
+    ('Groﬂbritannien', 'Great Britain', 'UK') |
+
+DELIMITER ;
+*/

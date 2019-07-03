@@ -1,0 +1,46 @@
+http://directory.apache.org/studio/download/download-windows.html
+https://blog.john-pfeiffer.com/ldap-and-ldaps-with-apache-directory-studio-and-the-java-keystore/
+https://directory.apache.org/apacheds/basic-ug/1.5-sample-configuration.html
+https://www.javatips.net/api/com.sun.jndi.ldap.ldapctxfactory
+
+ui=admin, ou=system
+port=10389
+passwd=secret
+ApacheDS==server
+Apache directory server Studio
+
+
+package dbutil.dbutil;
+
+
+import java.util.Hashtable;
+
+import javax.naming.Context;
+import javax.naming.NamingEnumeration;
+import javax.naming.NamingException;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.InitialDirContext;
+ 
+public class SimpleJNDIExample {
+ 
+    public static void main(String[] args) throws NamingException {
+ 
+        Hashtable env = new Hashtable();
+ 
+        env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+        env.put(Context.PROVIDER_URL, "ldap://localhost:10389");
+ 
+        env.put(Context.SECURITY_PRINCIPAL, "uid=admin,ou=system");
+        env.put(Context.SECURITY_CREDENTIALS, "secret");
+        env.put(Context.SECURITY_AUTHENTICATION, "simple");
+ 
+        InitialDirContext ctx = new InitialDirContext(env);
+ 
+        Attributes attrs = ctx.getAttributes("");
+        NamingEnumeration enm = attrs.getAll();
+        while (enm.hasMore()) {
+            System.out.println(enm.next());
+        }
+    }
+}
+

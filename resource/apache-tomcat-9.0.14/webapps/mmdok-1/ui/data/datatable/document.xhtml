@@ -1,0 +1,154 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                template="./template.xhtml">
+
+    <ui:define name="head">
+        <style type="text/css">
+            .ui-datatable .ui-datatable-header {
+                text-align: right !important;
+            }
+            
+            .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                display: none;
+            }
+        </style>
+    </ui:define>
+    
+    <ui:define name="title">
+        DataTable - <span class="subitem">Table State</span> <span class="blue">- since v6.0.10</span>
+    </ui:define>
+
+    <ui:define name="description">
+        Search Documenta och filter the result
+    </ui:define>
+
+    <ui:define name="implementation">
+        
+        <h:form id="form">
+            
+            <p:dataTable id="tableStateDT" var="doc" value="#{dtDocStateView.docs}" widgetVar="docsTable" multiViewState="true"
+                         rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         selectionMode="single" selection="#{dtDocStateView.selectedDoc}" rowKey="#{doc.id}"
+                         emptyMessage="No docs found with given criteria" filteredValue="#{dtDocStateView.filteredDocs}">
+
+                <f:facet name="header">
+                    <p:outputPanel>
+                        <h:outputText value="Search all fields:" />
+                        <p:inputText id="globalFilter" onkeyup="PF('docsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                    </p:outputPanel>
+                </f:facet>
+                
+                <p:ajax event="rowSelect" update=":form:docDetail" oncomplete="PF('docDialog').show()" />
+
+                <p:column headerText="DocClass" filterBy="#{doc.document_class}" sortBy="#{doc.document_class}" filterMatchMode="contains">
+                    <h:outputText value="#{doc.document_class}" />
+                </p:column>
+                
+                <p:column headerText="Personnummer" filterBy="#{doc.personnummer}" sortBy="#{doc.personnummer}" filterMatchMode="contains">
+                    <h:outputText value="#{doc.personnummer}" />
+                </p:column>
+                
+                 <p:column headerText="Skadenummer" filterBy="#{doc.skadenummer}" sortBy="#{doc.skadenummer}" filterMatchMode="contains">
+                    <h:outputText value="#{doc.skadenummer}" />
+                </p:column>
+                
+                 <p:column headerText="Customerid" filterBy="#{doc.customerid}" sortBy="#{doc.customerid}" filterMatchMode="contains">
+                    <h:outputText value="#{doc.customerid}" />
+                </p:column>
+                
+                 <p:column headerText="Addtime" filterBy="#{doc.time_inserted}" sortBy="#{doc.time_inserted}" filterMatchMode="contains">
+                    <h:outputText value="#{doc.time_inserted}" />
+                </p:column>
+                
+
+                <p:column headerText="Year" filterBy="#{doc.year}" sortBy="#{doc.year}" filterMatchMode="startsWith">
+                    <h:outputText value="#{doc.year}" />
+                </p:column>
+
+                <p:column headerText="Typ" filterBy="#{doc.doktype}" sortBy="#{doc.doktype}" filterMatchMode="exact">
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('docsTable').filter()" style="width:100%; box-sizing: border-box;" >
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{dtDocStateView.doktypes}" />
+                        </p:selectOneMenu>
+                    </f:facet>
+                    <h:outputText value="#{doc.doktype}" />
+                </p:column>
+                
+                
+                
+           
+
+                <p:column headerText="Color" filterBy="#{doc.color}" sortBy="#{doc.color}" filterMatchMode="in">
+                    <f:facet name="filter">
+                        <p:selectCheckboxMenu label="Colors" onchange="PF('docsTable').filter()" style="width:100%; box-sizing: border-box;" scrollHeight="150">
+                            <f:selectItems value="#{dtDocStateView.colors}" />
+                        </p:selectCheckboxMenu>
+                    </f:facet>
+                    <h:outputText value="#{doc.color}" />
+                       
+                </p:column>
+                 <f:facet name="footer">
+                        In total there are #{fn:length(dtDocStateView.docs)} Documents.
+                </f:facet>
+            </p:dataTable>
+            
+            <p:dialog header="Document metadata" widgetVar="docDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="docDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty dtDocStateView.selectedDoc}" columnClasses="label,value">
+                        <f:facet name="header">
+                            <p:graphicImage name="demo/images/pdf.png"/> 
+                        </f:facet>
+        
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.id}" />
+                        
+                        <h:outputText value="Personnummer:" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.personnummer}" />
+                        
+                         <h:outputText value="Skadenummer:" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.skadenummer}" />
+                        
+                         <h:outputText value="Customerid:" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.customerid}" />
+
+
+                        <h:outputText value="Filename:" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.filename}" />
+                        
+                        <h:outputText value="Document class:" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.document_class}" />
+                        
+                        
+                        <h:outputText value="Varumärke:" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.varumarke}" />
+                        
+                        
+                        <h:outputText value="Addtime" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.time_inserted}" />
+                        
+                        <h:outputText value="Year" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.year}" />
+                        
+                        <h:outputText value="Doktype" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.doktype}" />
+
+                        <h:outputText value="Color:" />
+                        <h:outputText value="#{dtDocStateView.selectedDoc.color}" style="color:#{dtDocStateView.selectedDoc.color}"/>
+                                                                                 
+    
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+            
+        </h:form>
+        
+    </ui:define>
+
+</ui:composition>

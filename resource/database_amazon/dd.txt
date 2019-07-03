@@ -1,0 +1,5 @@
+title	owner_control	modify_content	modify_metadata	view_content	view_metadata	publish	remove	acl_id
+empolyee	N	N	Y	Y	Y	N	N	1000
+"employee minimum"	N	N	N	Y	Y	N	N	1001
+"employee limited"	N	N	N	N	Y	N	N	1002
+"full controll"	Y	Y	Y	Y	Y	Y	N	2000

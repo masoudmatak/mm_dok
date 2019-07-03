@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">
+        Graf - <span class="subitem">Masoud</span>
+    </ui:define>
+
+    <ui:define name="description">
+        statistiken visar Masoud insatser senaste månaderna
+    </ui:define>
+
+    <ui:define name="implementation">
+        <p:barChart model="#{chartJsView.mixedModel}" style="width: 100%; height: 600px;"/>
+    </ui:define>
+
+</ui:composition>

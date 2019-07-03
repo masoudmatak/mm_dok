@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+    <div class="layout-topbar">
+        <a id="menu-button" href="#">
+            <i class="pi pi-bars"></i>
+        </a>
+        <h:link class="logo-container" outcome="/index.xhtml">
+           <!--  <p:graphicImage name="images/primefaces-logo.png" library="showcase" />--> 
+            <p:graphicImage name="images/mmdok.png" library="showcase" />
+        </h:link>
+
+        <ul class="layout-topbar-menu">
+
+            <li>
+                <h:link outcome="/getstarted">SÖK DOKUMENT</h:link>
+            </li>
+            
+             <li>
+                <h:link outcome="/register.jsp">Masoud 1</h:link>
+            </li>
+            <li>
+                <a href="#">OLIKA TYPER</a>
+                <div class="themes-overlay">
+                    <div class="themes-overlay-header">DESIGNER</div>
+                    <a href="https://www.primefaces.org/designer/primefaces">
+                        <i class="pi pi-images"></i><span>Theme Designer</span></a>
+                    <div class="themes-overlay-header">PREMIUM</div>
+                    <a href="http://127.0.0.1/showcase-1/register.jsp"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-babylon.png" alt="Babylon"/><span>Rigister</span></a>
+                    <a href="https://www.primefaces.org/layouts/olympia"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-olympia.png" alt="Olympia"/><span>Olympia</span></a>
+                    <a href="https://www.primefaces.org/layouts/ecuador"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-ecuador.png" alt="Ecuador"/><span>Ecuador</span></a>
+                    <a href="https://www.primefaces.org/layouts/harmony"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-harmony.png" alt="Harmony"/><span>Harmony</span></a>
+                    <a href="https://www.primefaces.org/layouts/california"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-california.png" alt="California"/><span>California</span></a>
+                    <a href="https://www.primefaces.org/layouts/apollo"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-apollo.png" alt="Apollo"/><span>Apollo</span></a>
+                    <a href="https://www.primefaces.org/layouts/serenity"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-serenity.png" alt="Serenity"/><span>Serenity</span></a>
+                    <a href="https://www.primefaces.org/layouts/avalon"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-avalon.png" alt="Avalon (Bootstrap)"/><span>Avalon</span></a>
+                    <a href="https://www.primefaces.org/layouts/ultima"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-ultima.png" alt="Ultima (Material)"/><span>Ultima</span></a>
+                    <a href="https://www.primefaces.org/layouts/paradise"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-paradise.png" alt="Paradise"/><span>Paradise</span></a>
+                    <a href="https://www.primefaces.org/layouts/barcelona"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-barcelona.png" alt="Barcelona (Material)"/><span>Barcelona</span></a>
+                    <a href="https://www.primefaces.org/layouts/manhattan"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-manhattan.png" alt="Manhattan"/><span>Manhattan</span></a>
+                    <a href="https://www.primefaces.org/layouts/morpheus"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-morpheus.png" alt="Morpheus"/><span>Morpheus</span></a>
+                    <a href="https://www.primefaces.org/layouts/atlantis"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-atlantis.png" alt="Atlantis"/><span>Atlantis</span></a>
+                    <a href="https://www.primefaces.org/layouts/verona"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-verona.png" alt="Verona"/><span>Verona</span></a>
+                    <a href="https://www.primefaces.org/layouts/icarus"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-icarus.png" alt="Icarus"/><span>Icarus</span></a>
+                    <a href="https://www.primefaces.org/layouts/poseidon"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-poseidon.png" alt="Poseidon"/><span>Poseidon</span></a>
+                    <a href="https://www.primefaces.org/layouts/omega"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-omega.png" alt="Omega"/><span>Omega</span></a>
+
+                    <div class="themes-overlay-header">FREE</div>
+                    <h:form prependId="false">
+                        <p:growl id="selectedThemeGrowl" showDetail="true" severity="info" escape="false" />
+                        <ui:repeat value="#{themeSwitcherView.themes}" var="theme">
+                            <a href="#" data-theme="#{theme.name}"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-#{theme.name}.png" alt="#{theme.name}"/><span>#{theme.displayName}</span></a>
+                        </ui:repeat>
+                        <p:remoteCommand name="changeTheme" action="#{guestPreferences.changeTheme}" update="selectedThemeGrowl" />
+                    </h:form>
+                </div>
+
+            </li>
+            <li>
+                <a href="http://127.0.0.1/ViewerJS/#../../files/a.pdf" target="_blank">Doc Viewer</a>
+            </li>
+            
+            <li>
+                <a href="http://127.0.0.1/storeFile-1/twofileslocal.html" target="_blank">Store Document</a>
+            </li>
+            
+            
+        </ul>
+    </div>
+</ui:composition>

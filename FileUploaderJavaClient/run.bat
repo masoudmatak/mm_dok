@@ -1,0 +1,2 @@
+rem CLASSPATH=commons-logging-1.1.1.jar;httpclient-4.2.5.jar;httpclient-cache-4.2.5.jar;httpcore-4.2.4.jar;httpmime-4.2.5.jar;.
+java -cp commons-logging-1.1.1.jar;httpclient-4.2.5.jar;httpclient-cache-4.2.5.jar;httpcore-4.2.4.jar;httpmime-4.2.5.jar;. net.javatutorial.tutorials.clienst.SendMultipleDocument
