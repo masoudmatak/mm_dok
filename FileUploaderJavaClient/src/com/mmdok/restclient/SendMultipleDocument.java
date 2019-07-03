@@ -31,7 +31,7 @@ import org.apache.http.util.EntityUtils;
 
 public class SendMultipleDocument {
 
-	private static int NUMBER_INSERT = 10;
+	private static int NUMBER_INSERT = 100;
 
 	public static void main(String[] args) {
 		SendMultipleDocument multiple = new SendMultipleDocument();
@@ -175,7 +175,7 @@ public class SendMultipleDocument {
 					"1952071015", "1952071016", "1952071017", "1952071018", "1952071019" };
 			int test = rand.nextInt(10000);
 			if (test < kandpersonnr.length) {
-				persnr = kandpersonnr[test];
+			//	persnr = kandpersonnr[test];
 			}
 			// persnr="201905101314";
 			String[] doc_class = { "CLAIM", "CORRESPODENT", "FAKTURA", "FORSAKRING", "HANDLING", "INDIVIDUELL",
