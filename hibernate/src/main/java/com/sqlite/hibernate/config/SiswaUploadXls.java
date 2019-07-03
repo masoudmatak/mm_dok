@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * Created by Agus Suhardi on 2/17/2017.
- */
+
 public class SiswaUploadXls {
 
     private static SiswaDao dao = HibernateUtil.getSiswaDao();

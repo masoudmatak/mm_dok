@@ -27,9 +27,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/**
- * Created by Agus Suhardi on 4/16/2017.
- */
+
 public class SiswaController implements Initializable {
     public TextField txtNis;
     public TextField txtNama;

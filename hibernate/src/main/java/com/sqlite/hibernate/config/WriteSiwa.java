@@ -12,9 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
-/**
- * Created by Agus Suhardi on 4/16/2017.
- */
+
 public class WriteSiwa {
 
     public static void main(String[] args) throws IOException {

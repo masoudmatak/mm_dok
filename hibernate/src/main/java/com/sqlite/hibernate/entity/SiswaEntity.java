@@ -5,9 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-/**
- * Created by Agus Suhardi on 4/16/2017.
- */
+
 @Entity
 @Table(name = "siswa")
 public class SiswaEntity extends user implements Serializable{

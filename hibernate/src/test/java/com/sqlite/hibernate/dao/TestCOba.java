@@ -7,9 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Agus Suhardi on 4/16/2017.
- */
+
 public class TestCOba {
 
     SiswaDao dao = HibernateUtil.getSiswaDao();

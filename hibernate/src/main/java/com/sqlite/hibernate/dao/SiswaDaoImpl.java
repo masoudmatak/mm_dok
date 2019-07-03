@@ -7,9 +7,7 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-/**
- * Created by Agus Suhardi on 2/9/2017.
- */
+
 public class SiswaDaoImpl implements SiswaDao {
 
     private final SessionFactory sessionFactory;

@@ -5,9 +5,7 @@ import com.sqlite.hibernate.dao.SiswaDao;
 import com.sqlite.hibernate.entity.SiswaEntity;
 import org.junit.Test;
 
-/**
- * Created by Agus Suhardi on 4/16/2017.
- */
+
 public class SiswaDaoTest {
 
     SiswaDao dao = HibernateUtil.getSiswaDao();
