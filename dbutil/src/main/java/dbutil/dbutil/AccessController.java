@@ -30,7 +30,7 @@ public class AccessController {
 		String adgroup = "";
 		return adgroup;
 	}
-
+//
 	private String getAutorization(String adgroup) {
 		String autorization = "";
 		return autorization;
