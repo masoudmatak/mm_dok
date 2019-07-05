@@ -19,13 +19,14 @@ action and will require legal action through court.
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "doc")
 public class DocEntity  implements Serializable{ 
-
+	 @Id
 	private String id;
 	private String doktype;
 	private int year;
