@@ -42,10 +42,9 @@ import javax.ws.rs.core.UriInfo;
 
 import org.xmlpull.v1.XmlPullParserException;
 
+import com.sqlite.hibernate.MasoudDoc;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
-
-import dbutil.dbutil.ConnectionMgmt;
 import dbutil.dbutil.DBAPI;
 import io.minio.MinioClient;
 import io.minio.errors.MinioException;
@@ -53,7 +52,7 @@ import io.minio.errors.MinioException;
 @Path("/upload2")
 public class UploadTwoFiles {
 
-	private static int guildLength=36;
+	private static int guildLength = 36;
 	/** The path to the folder where we want to store the uploaded files */
 	private String UPLOAD_FOLDER = "/home/ubuntu/dokmentplatsen/";
 
@@ -95,6 +94,7 @@ public class UploadTwoFiles {
 		String sourcesystem_name = "";
 		String which_year = "";
 		String errorMessage = null;
+		int yearToInt = 2019;
 		if (fileDetail != null) {
 			// System.out.println("FileName 1111111..........................." +
 			// fileDetail.getFileName());
@@ -121,7 +121,7 @@ public class UploadTwoFiles {
 			source_systemid = parser.getTagvalue(metadata, "source_systemid");
 			sourcesystem_name = parser.getTagvalue(metadata, "sourcesystem_name");
 			which_year = parser.getTagvalue(metadata, "which_year");
-			
+			yearToInt = Integer.parseInt(which_year);
 
 			if (personnummer == null) {
 				errorMessage = "personnummer is null, cannot add";
@@ -164,7 +164,7 @@ public class UploadTwoFiles {
 		}
 
 		String uploadedFileLocation = UPLOAD_FOLDER + fileDetail.getFileName();
-		System.out.println("fil storlek:              "+uploadedInputStream.toString().length());
+		System.out.println("fil storlek:              " + uploadedInputStream.toString().length());
 
 		try {
 
@@ -173,11 +173,18 @@ public class UploadTwoFiles {
 						+ "</center></body></html>";
 				return Response.status(500).entity(messagePage).build();
 			} else {
-                     String generatedFileName=getGuid();
-				if (saveToMINIO(uploadedInputStream, generatedFileName/*fileDetail.getFileName()*/,document_class.toLowerCase())) {
-					DBAPI.insertIntoDB(generatedFileName /* fileDetail.getFileName() */, uploadedFileLocation, document_class,
-							source_systemid, personnummer, skadenummer, policy_number, varumarke, department,
-							customerid, yta, gallringdagar, sourcesystem_name,which_year);
+				String generatedFileName = getGuid();
+				if (saveToMINIO(uploadedInputStream, generatedFileName/* fileDetail.getFileName() */,
+						document_class.toLowerCase())) {
+					/*if (isWindows()) {
+						MasoudDoc.insertIntoDB(generatedFileName, generatedFileName ,
+								uploadedFileLocation, document_class, source_systemid, personnummer, skadenummer,
+								policy_number, varumarke, department, customerid, yta, gallringdagar, sourcesystem_name,
+								yearToInt);
+					}*/
+					DBAPI.insertIntoDB(generatedFileName /* fileDetail.getFileName() */, uploadedFileLocation,
+							document_class, source_systemid, personnummer, skadenummer, policy_number, varumarke,
+							department, customerid, yta, gallringdagar, sourcesystem_name, which_year);
 				}
 
 			}
@@ -190,10 +197,8 @@ public class UploadTwoFiles {
 		return Response.status(200).entity("File saved to " + uploadedFileLocation).build();
 	}
 
-	
-
 	private String getGuid() {
-	
+
 		String[] charList = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
 				"S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -221,7 +226,7 @@ public class UploadTwoFiles {
 
 	private boolean saveToMINIO(InputStream inStream, String fleName, String bucketName) {
 		try {
-			//String bukett = "miniobukett";
+			// String bukett = "miniobukett";
 			MinioClient minioClient = null;
 
 			if (isWindows()) {
@@ -232,17 +237,15 @@ public class UploadTwoFiles {
 				minioClient = new MinioClient("http://13.53.172.37:9000", "admin", "dokmasoud");
 			}
 
-			
-			
-			 boolean found = minioClient.bucketExists(bucketName);
-			  if (found) {
-			  //  System.out.println("mybucket already exists");
-			  } else {
-			    // Create bucket 'my-bucketname'.
-			    minioClient.makeBucket(bucketName);
-			   // System.out.println("mybucket is created successfully");
-			  }
-			  
+			boolean found = minioClient.bucketExists(bucketName);
+			if (found) {
+				// System.out.println("mybucket already exists");
+			} else {
+				// Create bucket 'my-bucketname'.
+				minioClient.makeBucket(bucketName);
+				// System.out.println("mybucket is created successfully");
+			}
+
 			ByteArrayInputStream bais = convertInputStreamToByteArrayInputStream(inStream);
 			// Create metadata map
 			Map<String, String> headerMap = new HashMap<String, String>();

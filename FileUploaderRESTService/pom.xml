@@ -45,8 +45,17 @@
 		 <artifactId>dbutil</artifactId> 
 		 <version>1.0</version> 
 		 <scope>system</scope> 
-		<systemPath>C:/sw/workspace/masoud/masoudGitkonto/m/dbutil/target/dbutil-1.jar</systemPath> 
+		<systemPath>C:/sw/workspace/masoud/mm_dok/mm_dok/dbutil/target/dbutil-1.jar</systemPath> 
 		</dependency> 
+		
+		   <dependency> 
+		 <groupId>hibernate</groupId> 
+		 <artifactId>hibernate</artifactId> 
+		 <version>1.0</version> 
+		 <scope>system</scope> 
+		<systemPath>C:/sw/workspace/masoud/mm_dok/mm_dok/hibernate/target/sqliLitehibernate-1.jar</systemPath> 
+		</dependency> 
+		
 	</dependencies>
 
 	<build>
