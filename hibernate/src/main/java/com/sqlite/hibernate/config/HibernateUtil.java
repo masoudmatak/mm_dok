@@ -9,10 +9,10 @@ import org.hibernate.cfg.Configuration;
 
 
 public class HibernateUtil {
-    private static final SessionFactory SESSION_FACTORY;
+    private static  SessionFactory SESSION_FACTORY;
 
     private static final SiswaDao SISWA_DAO;
-    private static final DocDao DOC_DAO;
+    private static  DocDao DOC_DAO;
 
     static {
         try {
@@ -34,7 +34,8 @@ public class HibernateUtil {
     }
     
     public static DocDao getDocDao() {
-        return DOC_DAO;
+    	 
+    	return DOC_DAO;
     }
     
 }

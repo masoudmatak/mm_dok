@@ -68,6 +68,31 @@ public class DocEntity  implements Serializable{
 		this.docsize = docsize;
 		this.sold = sold;
 	}
+	
+	
+	public DocEntity(String id,String dokName, String filename, String document_class, String source_systemid,
+			String personnummer, String skadenummer, String policy_number, String varumarke, String department,
+			String customerid, String yta, String gallringdagar, String sourcesystem_name, int year) {
+		this.id = id;
+		this.doktype = document_class;
+		this.year = year;
+		this.color = "Black";
+		this.personnummer = personnummer;
+		this.skadenummer = skadenummer;
+		this.customerid = customerid;
+		this.varumarke = varumarke;
+		this.bucket_name = document_class;
+		this.document_class = document_class;
+		this.source_systemid = source_systemid;
+		this.filename = filename;
+		
+		this.generated_filename = dokName;
+		
+		
+	}
+	
+
+
 
 	public String getId() {
 		return id;

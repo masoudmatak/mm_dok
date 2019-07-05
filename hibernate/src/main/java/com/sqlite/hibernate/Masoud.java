@@ -22,5 +22,6 @@ public class Masoud {
 	       System.out.println("svaret : "+ svar.getNama());
 	    }
 
-	 
+	
+	
 }
