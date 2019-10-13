@@ -54,7 +54,7 @@ public class UploadTwoFiles {
 
 	private static int guildLength = 36;
 	/** The path to the folder where we want to store the uploaded files */
-	private String UPLOAD_FOLDER = "/home/ubuntu/dokmentplatsen/";
+	private String UPLOAD_FOLDER = "/home/masoud/";
 
 	public UploadTwoFiles() {
 
@@ -234,7 +234,7 @@ public class UploadTwoFiles {
 				// System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN " +
 				// System.getProperty("os.name"));
 			} else {
-				minioClient = new MinioClient("http://13.53.172.37:9000", "admin", "dokmasoud");
+				minioClient = new MinioClient("http://localhost:9000", "admin", "brommasodermalm");
 			}
 
 			boolean found = minioClient.bucketExists(bucketName);

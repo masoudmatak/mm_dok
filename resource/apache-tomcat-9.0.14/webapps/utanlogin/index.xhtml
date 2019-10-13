@@ -1,0 +1,141 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="head">
+        <script type="text/javascript">
+     //<![CDATA[
+        $(document).ready(function () {
+            $('html').animate({ scrollTop: 0 }, 1);
+            $('body').animate({ scrollTop: 0 }, 1);
+        });
+
+        /* Scroll Animate */
+        $('.themes-btn').off('click').on('click', function () {
+            var target = $('#prime-themes');
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 70
+                }, 500);
+                return false;
+            }
+        });
+     //]]>
+        </script>
+    </ui:define>
+
+   <!--   <ui:define name="content">-->
+      
+   
+    
+      <ui:define name="implementation">
+
+        <h:form>
+            <p:dataTable id="tbl" var="metadoc" value="#{docExporterView.metadatas}" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                         paginator="true" rows="10" style="margin-bottom:20px">
+
+                <f:facet name="{Exporters}">
+                    <div style="float:right;padding-top: 5px;">
+                        <h:commandLink>
+                            <p:graphicImage name="/demo/images/excel.png" width="24"/>
+                            <p:dataExporter type="xls" target="tbl" fileName="metadatas" />
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <p:graphicImage name="/demo/images/pdf.png" width="24"/>
+                            <p:dataExporter type="pdf" target="tbl" fileName="metadatas"/>
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <p:graphicImage name="/demo/images/csv.png" width="24"/>
+                            <p:dataExporter type="csv" target="tbl" fileName="metadatas" />
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <p:graphicImage name="/demo/images/xml.png" width="24"/>
+                            <p:dataExporter type="xml" target="tbl" fileName="metadatas" />
+                        </h:commandLink>
+                    </div>
+                </f:facet>
+
+
+
+	
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="dokId" />
+                    </f:facet>
+                    <h:outputText value="#{metadoc.id}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="document_class"/>
+                    </f:facet>
+                    <h:outputText value="#{metadoc.document_class}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Personnummer" />
+                    </f:facet>
+                    <h:outputText value="#{metadoc.personnummer}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Skadenummer" />
+                    </f:facet>
+                    <h:outputText value="#{metadoc.skadenummer}" />
+                </p:column>
+                
+                 <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="customerid" />
+                    </f:facet>
+                    <h:outputText value="#{metadoc.customerid}" />
+                </p:column>
+                
+                 <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="time_inserted" />
+                    </f:facet>
+                    <h:outputText value="#{metadoc.time_inserted}" />
+                </p:column>
+                
+            </p:dataTable>
+
+            <h3>Export Page Data Only</h3>
+            <h:commandLink>
+                <p:graphicImage name="/demo/images/excel.png" />
+                <p:dataExporter type="xls" target="tbl" fileName="metadatas" pageOnly="true"/>
+            </h:commandLink>
+
+            <h:commandLink>
+                <p:graphicImage name="/demo/images/pdf.png" />
+                <p:dataExporter type="pdf" target="tbl" fileName="metadatas" pageOnly="true" />
+            </h:commandLink>
+
+            <h:commandLink>
+                <p:graphicImage name="/demo/images/csv.png" />
+                <p:dataExporter type="csv" target="tbl" fileName="metadatas" pageOnly="true" />
+            </h:commandLink>
+
+            <h:commandLink>
+                <p:graphicImage name="/demo/images/xml.png" />
+                <p:dataExporter type="xml" target="tbl" fileName="metadatas" pageOnly="true" />
+            </h:commandLink>
+            
+         
+            
+            
+            
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

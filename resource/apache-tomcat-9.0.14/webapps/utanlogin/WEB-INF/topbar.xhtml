@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+    <div class="layout-topbar">
+        <a id="menu-button" href="#">
+            <i class="pi pi-bars"></i>
+        </a>
+        <h:link class="logo-container" outcome="/index.xhtml">
+           <!--  <p:graphicImage name="images/primefaces-logo.png" library="showcase" />--> 
+            <p:graphicImage name="images/mmdok.png" library="showcase" />
+        </h:link>
+
+        <ul class="layout-topbar-menu">
+
+            <li>
+          
+                <h:link outcome="/ui/data/datatable/document">SÖK DOKUMENT</h:link>
+            </li>
+            
+             <li>
+                 <a href="/autorize-1/rest/autorize/193501223860/" target="_blank">searchDocument API</a>
+                
+            </li>
+            <li>
+                <a href="#">OLIKA TYPER</a>
+                <div class="themes-overlay">
+                    <div class="themes-overlay-header">DESIGNER</div>
+                    <a href="https://www.if.se">
+                        <i class="pi pi-images"></i><span>Mina sidor</span></a>
+                    <div class="themes-overlay-header">Document-type</div>
+                   <!--   <a href="http://127.0.0.1/showcase-1/register.jsp"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-babylon.png" alt="Kundhandling"/><span>Kundhandling</span></a>-->
+                    <a href="/autorize-1/rest/autorize/193501223860/" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-olympia.png" alt="SearchDocument"/><span>searchDocument API</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-ecuador.png"  alt="Faktura"/><span>Email</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-harmony.png"  alt="Försäkring"/><span>Försäkring</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-california.png"  alt="Inkommande"/><span>Inkommande</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-apollo.png"  alt="Kundbrev"/><span>Kundbrev</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-serenity.png"  alt="Anonym"/><span>Sparande</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-avalon.png"  alt="Anmälan"/><span>Anmälan</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-ultima.png"  alt="Erbjudande"/><span>Erbjudande</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-paradise.png"  alt="Skatt-handlig"/><span>Skatt-handlig</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-barcelona.png"  alt="Instruktion"/><span>Instruktion</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-morpheus.png"  alt="Skador"/><span>Skador</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-atlantis.png"  alt="Förslag"/><span>Förslag</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-verona.png"  alt="Avtal"/><span>Avtal</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-icarus.png"  alt="Avtalbrev"/><span>Avtalbrev</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-poseidon.png"  alt="Hjälp"/><span>Hjälp</span></a>
+                    <a href="https://www.if.se" target="_blank"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-omega.png"  alt="Instruktion"/><span>Instruktion</span></a>
+
+                    <div class="themes-overlay-header">Change Color</div>
+                    <h:form prependId="false">
+                        <p:growl id="selectedThemeGrowl" showDetail="true" severity="info" escape="false" />
+                        <ui:repeat value="#{themeSwitcherView.themes}" var="theme">
+                            <a href="#" data-theme="#{theme.name}"><h:graphicImage name="showcase/images/themeswitcher/themeswitcher-#{theme.name}.png" alt="#{theme.name}"/><span>#{theme.displayName}</span></a>
+                        </ui:repeat>
+                        <p:remoteCommand name="changeTheme" action="#{guestPreferences.changeTheme}" update="selectedThemeGrowl" />
+                    </h:form>
+                </div>
+
+            </li>
+            <li>
+                <a href="/ViewerJS/#../../files/a.pdf" target="_blank">Doc Viewer</a>
+            </li>
+            
+            <li>
+                <a href="/storeFile-1/index.html" target="_blank">Store Document</a>
+            </li>
+            
+            
+        </ul>
+    </div>
+</ui:composition>

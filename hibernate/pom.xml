@@ -5,7 +5,7 @@
 
 	<groupId>com.sqlite.hibernate</groupId>
 	<artifactId>sqliLitehibernate</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
     <build>
         <plugins>
             <plugin>
