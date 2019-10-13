@@ -86,7 +86,9 @@ public class SendMultipleDocument {
 			//HttpPost httppost = new HttpPost("http://13.53.172.37:8080/storeFile-1/rest/upload2");
 			// HttpPost httppost = new
 			// HttpPost("http://127.0.0.1/storeFile-1/rest/upload2");
-			 HttpPost httppost = new HttpPost("http://127.0.0.1:80/storeFile-1/rest/upload2");
+			
+			// HttpPost httppost = new HttpPost("http://127.0.0.1:80/storeFile-1/rest/upload2");
+			 HttpPost httppost = new HttpPost("http://35.228.104.97:8080/storeFile-1/rest/upload2");
 			MultipartEntity entity = new MultipartEntity();
 
 			entity.addPart("file2", new InputStreamBody(fis2, inFile2.getName()));

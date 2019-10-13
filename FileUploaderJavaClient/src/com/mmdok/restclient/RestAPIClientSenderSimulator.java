@@ -31,7 +31,7 @@ import org.apache.http.util.EntityUtils;
 
 public class RestAPIClientSenderSimulator {
 
-	private static int NUMBER_INSERT = 40;
+	private static int NUMBER_INSERT = 10;
 
 	public static void main(String[] args) {
 		RestAPIClientSenderSimulator multiple = new RestAPIClientSenderSimulator();
@@ -82,9 +82,8 @@ public class RestAPIClientSenderSimulator {
 			fis2 = new FileInputStream(inFile2);
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
 
-			HttpPost httppost = new HttpPost("http://13.53.172.37:8080/storeFile-1/rest/upload2");
-			// HttpPost httppost = new
-			// HttpPost("http://127.0.0.1/storeFile-1/rest/upload2");
+			//HttpPost httppost = new HttpPost("http://13.53.172.37:8080/storeFile-1/rest/upload2");
+			 HttpPost httppost = new HttpPost("http://127.0.0.1/storeFile-1/rest/upload2");
 
 			MultipartEntity entity = new MultipartEntity();
 
